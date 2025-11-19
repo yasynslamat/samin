@@ -88,18 +88,30 @@
         .pt-navbar { padding-top: 80px; }
 
         /* هیرو */
-        .hero {
-            height: 60vh;
-            min-height: 500px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://cp.hofmannprofile.com/media/images/seo/img6.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-        .hero h1 { font-size: 48px; margin-bottom: 20px; }
-        .hero p { font-size: 24px; margin-bottom: 30px; }
+       .hero {
+    height: 100vh;                  /* تمام ارتفاع صفحه */
+    min-height: 500px;              /* حداقل ارتفاع برای موبایل */
+    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                url('https://cp.hofmannprofile.com/media/images/seo/img6.jpg') center/cover no-repeat fixed;
+    background-size: cover;         /* عکس کاملاً فیت میشه */
+    background-position: center center;  /* همیشه دقیقاً وسط */
+    background-attachment: fixed;   /* پارالاکس خیلی قشنگ (اختیاری اما حرفه‌ای) */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* اگر موبایل خیلی کوتاه میشه، این رو اضافه کن */
+@media (max-width: 768px) {
+    .hero {
+        height: 80vh;
+        background-attachment: scroll;  /* در موبایل پارالاکس رو خاموش کن که لگ نزنه */
+    }
+}
+        .hero h1 { font-size: 48px; margin-bottom: 20px; color:#2563eb; }
+        .hero p { font-size: 24px; margin-bottom: 30px; color:#f9fafb; }
 
         /* سکشن‌های عمومی */
         section { padding: 80px 0; }
@@ -124,7 +136,7 @@
             transition: transform 0.3s;
         }
         .card:hover { transform: translateY(-10px); }
-        .card img { height: 220px; object-fit: cover; }
+        .card img { height: 225px; object-fit: fill; width:fit-content; }
         .card-body { padding: 25px; }
         .card h3 { font-size: 24px; margin-bottom: 15px; }
         .card p { color: #555; margin-bottom: 15px; }
@@ -359,6 +371,82 @@
         width: 80px;
     }
 }
+
+.stats-section {
+    padding: 90px 10px;
+    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+    color: white;
+    text-align: center;
+}
+.stats-title {
+    font-size: 42px;
+    font-weight: bold;
+    margin-bottom: 70px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* گرید ثابت - در دسکتاپ ۳ تا در یک ردیف، موبایل عمودی */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 45px 20px;
+    border-radius: 24px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.4s;
+}
+.stat-card:hover::before { opacity: 1; }
+
+.stat-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+}
+
+.stat-number {
+    font-size: 68px;
+    font-weight: 800;
+    margin-bottom: 12px;
+    line-height: 1;
+    position: relative;
+}
+.stat-number span {
+    font-size: 48px;
+    position: relative;
+    top: -10px;
+}
+.stat-label {
+    font-size: 20px;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+    .stats-title { font-size: 32px; margin-bottom: 50px; }
+    .stat-number { font-size: 52px; }
+    .stat-number span { font-size: 36px; }
+    .stat-label { font-size: 18px; }
+    .stat-card { padding: 35px 15px; }
+}
     </style>
 </head>
 <body>
@@ -416,7 +504,7 @@
             <h2 class="section-title">محصولات ما</h2>
             <div class="products-grid">
                 <div class="card">
-                    <img src="https://cp.hofmannprofile.com/media/images/upvc-window.jpg" alt="پنجره لولایی">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPrrCRWamvmZAUwKD9XDQ2o3k_G9C8ozA9nQ&s" alt="پنجره لولایی">
                     <div class="card-body">
                         <h3>پنجره‌های لولایی</h3>
                         <p>طراحی کلاسیک با حداکثر بازشو و عایق‌بندی کامل صدا و حرارت.</p>
@@ -432,7 +520,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <img src="https://placehold.co/600x400/b0c4de/333333?text=درب+PVC" alt="درب PVC">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPICX2MR833HmhFuNcwWdNPphNrHMm1gL9jA&s" alt="درب PVC">
                     <div class="card-body">
                         <h3>درب‌های PVC</h3>
                         <p>امنیت بالا، مقاوم در برابر رطوبت و تغییرات دما.</p>
@@ -492,7 +580,7 @@
                     <img src="https://asemanwindow.com/wp-content/uploads/2023/06/veka-logo.png" alt="Veka">
                 </div>
                 <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/wintech-logo.png" alt="WinTech">
+                    <img src="https://asemanwindow.com/wp-content/uploads/2022/03/WINTECH-logo-pardic.png" alt="WinTech">
                 </div>
                 <div class="brand-logo">
                     <img src="https://asemanwindow.com/wp-content/uploads/2023/06/akpa-logo.png" alt="Akpa">
@@ -533,11 +621,15 @@
     <!-- پروژه‌ها -->
     <section id="projects">
         <div class="container">
-            <h2 class="section-title">پروفیل های مجموعه</h2>
+            <h2 class="section-title">پروژه های  تکمیل شده</h2>
             <div class="projects-grid">
                 <div class="project-item"><img src="https://asemanwindow.com/wp-content/uploads/2022/03/Page-4-Image-8.jpg" alt="پروژه"></div>
                 <div class="project-item"><img src="https://placehold.co/500x500/bbbbbb/333333?text=پروژه+2" alt="پروژه"></div>
                 <div class="project-item"><img src="https://placehold.co/500x500/aaaaaa/333333?text=پروژه+3" alt="پروژه"></div>
+                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
+                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
+                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
+                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
                 <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
                 <!-- می‌تونی بیشتر اضافه کنی -->
             </div>
@@ -549,7 +641,7 @@
         <div class="container">
             <div class="about-wrapper">
                 <div class="about-img">
-                    <img src="https://placehold.co/600x450/e0e0e0/333333?text=درباره+شرکت+ثمین" alt="درباره شرکت ثمین">
+                    <img src="https://i.postimg.cc/44HgvS9d/Gemini-Generated-Image-tknos4tknos4tkno.png" alt="درباره شرکت ثمین">
                 </div>
                 <div class="about-text">
                     <h2>درباره ما</h2>
@@ -560,6 +652,42 @@
             </div>
         </div>
     </section>
+    
+
+   <!-- بخش آمار و ارقام - کاملاً ثابت + شمارنده انیمیشنی -->
+<section class="stats-section">
+    <div class="container">
+        <h2 class="stats-title">ثمین در یک نگاه</h2>
+
+        <!-- گرید ثابت و ریسپانسیو -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" data-target="1200"><span>+</span></div>
+                <p class="stat-label">پروژه موفق اجرا شده</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="23"></div>
+                <p class="stat-label">سال تجربه در صنعت UPVC</p>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" data-target="1150"><span>+</span></div>
+                <p class="stat-label">مشتری کاملاً راضی</p>
+            </div>
+            <!-- <div class="stat-card">
+                <div class="stat-number" data-target="42">۰</div>
+                <p class="stat-label">دسی‌بل کاهش صدا (حداکثر)</p>
+            </div> -->
+            <div class="stat-card">
+                <div class="stat-number" data-target="24">24<span>/7</span></div>
+                <p class="stat-label">پشتیبانی شبانه‌روزی</p>
+            </div>
+            <!-- <div class="stat-card">
+                <div class="stat-number" data-target="5">۰</div>
+                <p class="stat-label">نمایندگی فعال در خراسان</p>
+            </div> -->
+        </div>
+    </div>
+</section>
 
     <!-- تماس -->
     <section id="contact">
@@ -599,20 +727,25 @@
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.836-.184-5.25-2.6-5.433-5.433l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
                         </svg>
-                        <div><strong>تلفن:</strong><br>۰۹۱۵۹۵۲۵۲۴۲</div>
+                       
+                        <div>
+                        <strong>تلفن:</strong>
+                         <div>۰۹۱۵۹۵۲۵۲۴۲</div>
+                        </div>
+                       
                     </div>
                     <div class="info-item">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m21.75 0c0-1.244-1.006-2.25-2.25-2.25h-15a2.25 2.25 0 00-2.25 2.25m21.75 0v.01A2.25 2.25 0 0119.5 9h-15a2.25 2.25 0 01-2.25-2.25V6.75m0 0v-0.01a2.25 2.25 0 012.25-2.25h15a2.25 2.25 0 012.25 2.25z" />
                         </svg>
-                        <div><strong>اینستاگرام:</strong><br>@pangaredojedarasamin5242</div>
+                        <div"><strong>اینستاگرام:</strong><br><a href="#">pangaredojedarasamin5242@</a></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- فوتر -->
+    
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -626,7 +759,7 @@
                         <li><a href="#products">محصولات</a></li>
                         <li><a href="#projects">پروژه‌ها</a></li>
                         <li><a href="#about">درباره ما</a></li>
-                        <li><a href="#">نمایندگی‌ها</a></li>
+                        
                     </ul>
                 </div>
                 <div>
@@ -649,26 +782,8 @@
     </footer>
 
     <!-- جاوااسکریپت منوی موبایل -->
-    <script>
-        document.getElementById('mobile-btn').addEventListener('click', function() {
-            document.getElementById('mobile-menu').style.display = 
-                document.getElementById('mobile-menu').style.display === 'block' ? 'none' : 'block';
-        });
-        const slider = document.querySelector('.brands-slider');
-    if (slider) {
-        slider.addEventListener('mouseenter', () => {
-            document.querySelectorAll('.brand-item').forEach(item => {
-                item.style.animationPlayState = 'paused';
-            });
-            slider.style.animationPlayState = 'paused';
-        });
-        slider.addEventListener('mouseleave', () => {
-            document.querySelectorAll('.brand-item').forEach(item => {
-                item.style.animationPlayState = 'running';
-            });
-            slider.style.animationPlayState = 'running';
-        });
-    }
+    <script src="js.js">
+       
     </script>
 </body>
 </html>
