@@ -7,447 +7,9 @@
 
     <!-- گوگل فونت وزیرمتن -->
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css.css">
 
-    <style>
-        /* ریست و تنظیمات کلی */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            background-color: #f9fafb;
-            color: #333;
-            line-height: 1.6;
-        }
-        a { text-decoration: none; }
-        img { max-width: 100%; display: block; }
-        .container { width: 90%; max-width: 1280px; margin: 0 auto; padding: 0 15px; }
 
-        /* هدر ثابت */
-        header {
-            background: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-        nav { padding: 16px 0; }
-        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #1d4ed8;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        .logo svg { width: 36px; height: 36px; fill: none; stroke: #2563eb; stroke-width: 2; }
-        .menu-desktop {
-            display: none;
-            gap: 30px;
-            align-items: center;
-        }
-        .menu-desktop a {
-            color: #374151;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .menu-desktop a:hover { color: #2563eb; }
-        .btn-primary {
-            background: #2563eb;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(37,99,235,0.3);
-        }
-        .btn-primary:hover { background: #1d4ed8; }
-
-        /* منوی موبایل */
-        .mobile-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        .mobile-menu {
-            display: none;
-            margin-top: 20px;
-            background: #f9fafb;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .mobile-menu a {
-            display: block;
-            padding: 12px 20px;
-            color: #374151;
-        }
-        .mobile-menu a:hover { background: #e5e7eb; }
-
-        /* فضای خالی بالای صفحه به خاطر هدر ثابت */
-        .pt-navbar { padding-top: 80px; }
-
-        /* هیرو */
-       .hero {
-    height: 100vh;                  /* تمام ارتفاع صفحه */
-    min-height: 500px;              /* حداقل ارتفاع برای موبایل */
-    background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
-                url('https://cp.hofmannprofile.com/media/images/seo/img6.jpg') center/cover no-repeat fixed;
-    background-size: cover;         /* عکس کاملاً فیت میشه */
-    background-position: center center;  /* همیشه دقیقاً وسط */
-    background-attachment: fixed;   /* پارالاکس خیلی قشنگ (اختیاری اما حرفه‌ای) */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-}
-
-/* اگر موبایل خیلی کوتاه میشه، این رو اضافه کن */
-@media (max-width: 768px) {
-    .hero {
-        height: 80vh;
-        background-attachment: scroll;  /* در موبایل پارالاکس رو خاموش کن که لگ نزنه */
-    }
-}
-        .hero h1 { font-size: 48px; margin-bottom: 20px; color:#2563eb; }
-        .hero p { font-size: 24px; margin-bottom: 30px; color:#f9fafb; }
-
-        /* سکشن‌های عمومی */
-        section { padding: 80px 0; }
-        .section-title {
-            font-size: 36px;
-            text-align: center;
-            margin-bottom: 50px;
-            color: #1f2937;
-        }
-
-        /* محصولات */
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        .card {
-            background: #f9fafb;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-        .card:hover { transform: translateY(-10px); }
-        .card img { height: 225px; object-fit: fill; width:fit-content; }
-        .card-body { padding: 25px; }
-        .card h3 { font-size: 24px; margin-bottom: 15px; }
-        .card p { color: #555; margin-bottom: 15px; }
-        .card a { color: #2563eb; font-weight: 600; }
-
-        /* ویژگی‌ها */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-        }
-        .feature-box {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        .feature-box svg { width: 60px; height: 60px; stroke: #2563eb; margin-bottom: 20px; }
-
-        /* پروژه‌ها */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-        }
-        .project-item {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .project-item img {
-            aspect-ratio: 1/1;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-        .project-item img:hover { transform: scale(1.1); }
-
-        /* درباره ما */
-        .about-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-            align-items: center;
-        }
-        .about-img img { border-radius: 12px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
-        .about-text { text-align: center; max-width: 700px; }
-        .about-text h2 { margin-bottom: 25px; }
-        .btn-outline {
-            border: 2px solid #2563eb;
-            color: #2563eb;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        .btn-outline:hover {
-            background: #2563eb;
-            color: white;
-        }
-
-        /* تماس */
-        .contact-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-        }
-        .contact-form {
-            background: #f9fafb;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
-        .form-grid.two { grid-template-columns: 1fr 1fr; }
-        input, textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-family: inherit;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
-        }
-        .contact-info h3 { margin-bottom: 30px; font-size: 26px; }
-        .info-item {
-            display: flex;
-            gap: unset;
-            margin-bottom: 25px;
-        }
-        .info-item svg { width: 24px; height: 24px; stroke: #2563eb; flex-shrink: 0; margin-top: 4px; }
-
-        /* فوتر */
-        footer {
-            background: #1f2937;
-            color: #d1d5db;
-            padding: 70px 0 30px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-        .footer-grid h3 { color: white; margin-bottom: 20px; }
-        .footer-grid ul { list-style: none; }
-        .footer-grid ul li { margin-bottom: 10px; }
-        .footer-grid a { color: #9ca3af; }
-        .footer-grid a:hover { color: white; }
-        .social-links {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #374151;
-            color: #9ca3af;
-        }
-
-        /* ریسپانسیو */
-        @media (min-width: 768px) {
-            .form-grid.two { grid-template-columns: 1fr 1fr; }
-            .footer-grid { grid-template-columns: repeat(3, 1fr); }
-            .about-wrapper { flex-direction: row; }
-            .about-text { text-align: right; }
-            .contact-wrapper { flex-direction: row; }
-            .contact-form { width: 66%; }
-            .contact-info { width: 33%; }
-        }
-        @media (min-width: 1024px) {
-            .menu-desktop { display: flex; }
-            .mobile-btn { display: none; }
-            .hero h1 { font-size: 58px; }
-            .hero { height: 80vh; }
-        }
-
-       .brands-section {
-    padding: 80px 0;
-    background: linear-gradient(90deg, #1e40af 0%, #1e3a8a 100%);
-    position: relative;
-    overflow: hidden;
-}
-.brands-title {
-    font-size: 36px;
-    font-weight: bold;
-    color: white;
-    text-align: center;
-    margin-bottom: 50px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-.brands-slider {
-    overflow: hidden;
-    position: relative;
-}
-.brands-slider::before,
-.brands-slider::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 200px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-}
-.brands-slider::before {
-    left: 0;
-    background: linear-gradient(to right, #1e40af 30%, transparent 100%);
-}
-.brands-slider::after {
-    right: 0;
-    background: linear-gradient(to left, #1e3a8a 30%, transparent 100%);
-}
-.brands-track {
-    display: flex;
-    animation: scrollBrands 60s linear infinite;
-}
-.brand-logo {
-    min-width: 220px;
-    margin: 0 30px;
-    background: white;
-    padding: 20px 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.6s ease;
-}
-.brand-logo:hover {
-    transform: translateY(-10px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-}
-.brand-logo img {
-    max-height: 70px;
-    max-width: 160px;
-    object-fit: contain;
-    filter: brightness(0) invert(0); /* در صورت نیاز به سیاه/سفید کردن */
-}
-
-/* انیمیشن اسکرول از چپ به راست (بی‌نهایت) */
-@keyframes scrollBrands {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-/* مکث هنگام هاور */
-.brands-slider:hover .brands-track {
-    animation-play-state: paused;
-}
-
-/* ریسپانسیو */
-@media (max-width: 768px) {
-    .brand-logo {
-        min-width: 160px;
-        margin: 0 15px;
-        padding: 15px;
-    }
-    .brand-logo img {
-        max-height: 55px;
-    }
-    .brands-slider::before,
-    .brands-slider::after {
-        width: 80px;
-    }
-}
-
-.stats-section {
-    padding: 90px 10px;
-    background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
-    color: white;
-    text-align: center;
-}
-.stats-title {
-    font-size: 42px;
-    font-weight: bold;
-    margin-bottom: 70px;
-    text-shadow: 0 4px 15px rgba(0,0,0,0.4);
-}
-
-/* گرید ثابت - در دسکتاپ ۳ تا در یک ردیف، موبایل عمودی */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.stat-card {
-    background: rgba(255, 255, 255, 0.12);
-    padding: 45px 20px;
-    border-radius: 24px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease;
-    position: relative;
-    overflow: hidden;
-}
-.stat-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
-    opacity: 0;
-    transition: opacity 0.4s;
-}
-.stat-card:hover::before { opacity: 1; }
-
-.stat-card:hover {
-    transform: translateY(-15px) scale(1.05);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-}
-
-.stat-number {
-    font-size: 68px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    line-height: 1;
-    position: relative;
-}
-.stat-number span {
-    font-size: 48px;
-    position: relative;
-    top: -10px;
-}
-.stat-label {
-    font-size: 20px;
-    opacity: 0.95;
-    font-weight: 500;
-}
-
-/* موبایل */
-@media (max-width: 768px) {
-    .stats-title { font-size: 32px; margin-bottom: 50px; }
-    .stat-number { font-size: 52px; }
-    .stat-number span { font-size: 36px; }
-    .stat-label { font-size: 18px; }
-    .stat-card { padding: 35px 15px; }
-}
-    </style>
 </head>
 <body>
 
@@ -577,65 +139,72 @@
             <div class="brands-track">
                 <!-- لوگوهای واقعی معروف در ایران - دقیقاً مثل عکس شما -->
                 <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/veka-logo.png" alt="Veka">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAT8AAACeCAMAAABzT/1mAAAA/1BMVEX///+srdOOjcTrAAD+7uzuHCX94eDtHCTp6fTyYV/uHSP///4uMZLtAAD7+/3vNzftABLtDxrj4/BcXKePkMIgI4wuMJRSUqT09PpKS58mKo7uMTG2t9ntHyjsAAw2Npb/+Pd0dLP95eP82tgYHInfUVqeos7My+T6wL3ycm74sq/809D1iYbzamjwSEj+8/P7y8kAAIL3lJH3n5zxV1f0gXz5urfU1Oj4nJz0b235rKnBwd7xUVFYWaT1eXj0hYPuQUAPFIZCQZpmZ66Wf66kibJ7bamZjbtVRJV5Wpm9rs0yJYh5drkQK5jt2eDZyt1iT5rmhYnbIC7bLTviZGka4PYUAAAUdElEQVR4nO1cCUPiypbGroRIhUhVd4sLpojAKDsREAURwZ77Zt6bd2feLP//t8w5pxIIAbWBd5e+t762XbIUyVdnryWTMTAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDD4bgS93vYTJ+fnJ7/uo/yAsB7nstRobTnz9KVWe34yDL6L3gsTXLDuJoGfy4vLy8Xr7W/wUD8QwrnyHV+KdpA6cXJVvMzni6dHv8VT/TioDBn3ueKT9ImTq/JlvnhZvPqohfPPH+Ph/Jd5+t8BWl3mMT4I0sdPrvIgf9/B31H5beT1j9Py0R/XjFr1STPrbhz+bv4+LW4eHm4TeHhI/X17XfsD8/cGUH+L38Vf+SF15Pg4deDqn8CfZW328e8BQTWshy1r4/h38/e1vO6iz29eL27W7d3RwfxV2rnh/bYg6zdGq90p+Nwp5Nr11Jm9+Tu6Oz1dfPucbOpg/loFJoQn678zEQzanCnJ4Z9gspNdOxfxd7kzfzd3+XKxdpZQ6oP5s/qMO77NcpVDWtmGnlWxevv2ipXzpG0LTygFIaDnh8mT+8gfhjLn559q4Hhqr4nM5VD+en2P+77Dxgn+qvVRPTikUTAK4WQ2nA7H/Wa4T0tBwwPaZGMwGLxIYTvCTxqYnfk7v735dnZxdn319O0SCDwtrjjbh78gKRXZoaeEV2otj7mTueeJ2abZ3uEDHqfKU1JK4Xl+Y7R7A62C9CXvB/h7vSQc7uUShYQd+Tu5vV4sTi8vwfaVz8rFItxa+xR7kd35c8PhNDdY0dNrdnKDhPRZJcVtztJGewdUckxCE0IAgw5X8j7YsYGgzzlX/YiyJrQiZEIAd+TvqlyDaPHnn8lm5pG/4uXiWxTI7M5fC99rTV8za1aqUpK+fwh/lTnlXf64kRsWFHc4m+5oXHv3EviL5bbKpc3VJFie3o2/z2Tznv/1p7+cwV3F4utrrVjOL56JwD38x0TAK8lS+NZ54M9xHG9v/qwpczhnsyo1dg/CbLNGsFMTwcSRvmho1t0+9oF6XCnwTvwdf6rli/l/Q5J6P73CbV+u0IsUF2cUxxwtduWvCX3LZeE9/mzueG+e/wDuxEORG0cGwupIsga7OeLeVPlcdCqZABycgOfZn78HkLriv0fm7qefIfO7ytzUTvN5rcK7yx/wZzuy8GbEjPIHAc2+/FlzBc2L5e2hwEBkVw2u++A0xLzT6HRRgIG/wb78vQJ/f42s3d/+o3h5ep05uTkFnV5cn+/FnwD9lPP3+AMB2lv+qkL6tvCXEa/F8ePUru58UgAfhB4cPBB3nA3+vqt+QPx9OQX5i27+22kxf/r3EyCwdlm+vLvZh78R2D9bbqnqRkD9dfbX39BD/kpLebN85I9l37tnG6r9gucxxTyF8T3wFyxP7cTfydECXO5PRNLxX0B/i1+xCbCB5drr58zVzvYP+XPEtPrWeeKP762/LYV88WXzFcjBQP72SG+y4ah93x4MutKxN+Xve+qn5H+PyyB0Pz//ZybzX3/9uVisXVD6dvxcy1/eXe1Rf/kO/pwD+LMKAt3vJHIYAbh7cFfdYL/WINQPcmo7f7V0cWoDX6l+BRYQrn79xz+wanh6GVX9v4ITBgV+2p0/kAfnff1FBzqxetbuqGTDroDwR0TxkVtHb87FfbWyR2uEEDrET/FH9dPa0/nx+7guX8H3z58wZC5e0pjJxVPM7QL4O9pH/iTav8L78udwPzfu5HbFcFpA62ojgY8hvHt7jp8GFmw+3LmxqMkSRwecjl+Ai2L5+cu7eC4XX+HHN/iJl+fLIIZfjnT56vb1NH+6uN2DvzrFL86bBh35gyeWAqCU2A0SGwf9tX3p8W7XR18P4u47cseGEk062J1szX+A8QM6IKN9B7VTsHt0CV0MgQuSflm7uP56c3NdPs0X7yCA2Z2/lpT4Om/lF24d7BVwIKXt2/4W2PbysB0fwEP6OFIlS0pxyAGBTNA8oRg6dMeOL/RXd9mrBpdnbHv1pS+De8VaPnSMGS3I1AegWkG5rK8E3p4XNYwbawv4B+zfQQq3R/7WA/my33Yg1pBERg0aDPP/HQEiy1S/MhpC6AG3w18sN5kUvD2aSkIxXYuJ8VRevCt7EfL5WERrd2cPmfOb6+KiBuJIcnh3fYz5787xSzATHAOq3FYPW52he7Yh4Oi9FHbGvDvt9NEzWeGkMe12p41BCJFz2B7O51tvKJXw/0coNNL53+ebb89nz89nS8Dvyb/wwJczsH/64PP1lS4XPFx9Osujbuevb4m3Pep/WR8U2LcVHw/q1TWEk1mBgfNF9xtkguzOqCRKzj0L/9K/u+CYD8HmLKKTD1wv4VP5KfptNWgEPvvh9vYhPrLH+Js7YBIMC+REkCL5TgKSMawd+EK9vDHv6ccC5R+bwFPx73vV7/uQFIFlxrxyDRRpAIuFzTH/HxKf7i6uP0B+cbPH+MfIZ2AE0VsmHauDPpMxPtg5Wf2d4uHrh7j+++0+40e9yRzUlzEFOXoEpcB1ysK4/odQ3e/FyZ7Th9wgO+rfz2aNWYxxZ9aeVP9U5BkYGBgYGPxqOD4yWOHq6GrHCOb4E+Lrp7cRx5YfXxFdsu3KjUb0H++1+mvjK33typ9BEn+6yc8GBgYGBgYGBgYGPwSCILAsC77/1g/yz8Neq3tuV7nzBujwDfxPLVN0K+FgPMUh8Pm0MwgrwZZ2A6u3hvVretV6fdvgQJANw+pbk1Ndqxq2KtveMshuP57JWK0wm/zoSr1Z3fa4maA1GbS2nnkf5bvXZ8CX8mITxWfC5d3aKkWr3uB6PoaeoOHJWT39ylZzPB2uYTZZXRNMSjiTtJBYhKARDnEUqzTYOuxSvedwUo43J0pUcp63dQJFMBDM84bLuSnuSHqMTbdMX89OcdBsuPtQ49nFMe7+cfLwrVYur023OX19gjOAp8QCp4w1mDOaAYRfNBHIkcybr7+ylfNYNF9KRd8UW66RCO49yeFekVpm5w48Bu1xyYab81PdiWI4+Rk+rJ96/aCLsyQUe0n3YjDwhO9zbx6fCJXwbS68jSU8vaHHfYezzs4DZmcXWrY+f1ukpivVXqPJhQ8r/tz6nEmagYbk+T7O5rZ9fOVCckbUQEjf0TOoiGe80mGzIGICz2IDnDWSzzvy8O3gPmdzhYjb9mjaFrQkUwQGEynpUTbEp5pjjo+Ld6K1N9Y9c6B9h3vDFNWtgsBJjuLtdRxvYcVfrYyzCtfkT19yu+Sv12Y0VQGEhEsaMMbJqcigo7z+iouZwt7EqX42zZeH747wBvq1gyFNqsQzkidWw1ljD7n2UQJVejrYCDjHmZMon8JZe0srJ+kjHMebrhPYGiqHY2uRoQinUs9Msb3UCoqwJKA7bVHaeXXekr8vkfwVCXla2Jniz2qACsGTwjsKrzRuP/ZnXaVohhH3JVsuMnQbdBAYAvPDGA3Ke8sFbNmCpDmVIEucvSTewQHx00aBeykTFeSYTRNPaf6lWtM/5A97FO5M7Q5TBf7gBima+vrWFOeew8W+o4bJK13gD0VbFHZeZxXz9/C2/sb8WTOGHY3zfdV8Uu25GTeo1DsKJ6iimizNCvJHs2n8xuTxcTB4fOz3m9V4CnkTBAln2uCrJVbSBH0m9Swc5C/lQkBFfZynLdF02GJtAXAP1zRhhyCzawvRQP5ADWzg7yTmj0cd5KxTjfIHTR/EXy01hTOtv26fcRQQeCCVMNXAhwD+HFzY3I/4GysiWkzhGV1EIkwMZnoOtE1CK5fbuVTAWIFwODjzxmad1Q1IUaSI3Rz1i7PmADR/ZGdxGl5CA4E/ktil/A0l9ZsN3b1ONenvQfxF9m/FYdL+UfxSlwL9BRhwOVjTrpCML358Sfcp6S9YONHdYo57XUkccEnzoDtxU3VQX5ztiwLoJ1YsIdBDgNTzeiV6T55oeMkfsu+IVY9o+7fGH87dJ2NJtmVFdViSOG/4MP6As1T8EvOH8tebeeRufS5egvU2RiURqV3DTfDHt/HntkqSpsZNu/S68cz/oM1QRYc5Tsq4tuDJ6qJ1x1WIbt9DPeXebKXfyJ9DPg1125Fq2butqUI/JRP8kfJy7UWEmCw7j1ZZHaS/Z3e1ddzFOzIAf3BNnUv0mRC2ddPRmYvLUumJ9DpE4g/7fcuykmDCoxVsI/AjHGRZH6+grRfz+sjBFZqO10yIeF+g55WqCYKC093BUcoVv1r+kBec4w42wYu3yCL+nDX+dD9Lif0BsvoYJPg7SP5Ojr6l5hJ+i7MOkj/3kVH4ABr2uBG+gwZzDPikGCT4c2SpXR8hmqMwzq8CkhYI1urBmGEwm9OvMOLC5l7HqqI1BfPeXlnYCq5hwisrGAJ41FVxMBnzh11SKlFYDvF8JJ3In7Ouv9SvTmGubUi8G5lb9w+Vv3dA/PVmzKaYRCY2R4hhdTDgw3VBpMDIH84IxkX7SkPwe02IVSAfKGUrM/GIY5Kk4AXiY8naGWuONspXCSFvk3RDFIdt14VEZyVWK8p6Y8nROYtx+IJL3XG+dseK+MNAfU3+EHJcaXgg/OjydKQ+8g+Vv4/4q3QwdkdK5pvJVUDT9OHJhPabmj/KTCjUQ9/J7kkoWlzShcBPKDD6Fm08XJkq9Bp1jPTQFUm+VP2KI8nc61DHGjJq2VsKIPKHdkV1eu49ppa430AO/U/YRbe9ob9cdtzgnpHSw5VWxB//hflTEX/dzfqIe08PBraRtBHlz9YuMYorwGtrmeg9UvRiKxDHoANBsaPba6Jdw3y490JNyZVzvEdj4EfiB1cqDILBdsWv2muQ/wX+smhlaMo797pV4g8fAfhzY/60nQTOXAw3McjycOlL06Eg9hfkzxozdKm41n+zSBHJnxPJ30p/Oe0OAF+SCSIEkzfM0CilajKQTek0aYcXMPwKElvMZtFQePESmSxH8QOao4+toFBBGBUbuQR/QITbhCiLCARXli2ISH+T/IEuUN1igMUETMKB6rojnUPtXwBxro52NYI1/oIXBgES5qz+ZvmnkhMUgnF1v7J/aIicgl/y4avUnWl91NsBgBNC86V1WYwDIkWHj26IrwL0RFuCBCDamK4gB/h40Yp5kJVYAJPyl8G1/opiGVZogU/Hp1rmH9WcwLCU5A8wctA8Qi7XbdVLh/IXTGbt9stLm0A/ZvGuMDr+G3hkpSGbbG/wNyrpvFgKCl41f/CckOW1NKI93Vw0/+SEMOyzZlgxEPMslgfsaJeJLEbj+Co6MKxS6AwCNxtQIvg4aHCUYIwBrRV/th3zl2mVPKJFzDtzqhcs5Q/4sxP8ZeoF5qNSyVLXx2V+h/BndZjS0+5jj7ks2N3mMf6rFlAx7GWQl0DQUdEyVe01iT+UmWG6jGL1SVDhDL6BO4oUGOw+xm0U/ARTRQ5EL2kMZmhKfUz1qArBlIfLEMlYydGSPwwpY/4y2blONCXxylf+IyV/cGDOfHLDFM6AUT2AvxlD1486SsUlB0KIiCctfxD6o0nDhUqdlAfpk4zgslLypRF/js5/1/mbCiyA8KjYVS1hSig74VQsJa43w3AOMhDyF61lxq9rVDal2pz48XT1MOIPbG9smK0cI12hGzEqXcmfQwXamD+I2j2HapHklw+SP9Ilgi7cpfnDzrKJYa7WtsOCjIJMlOPHOwsBf5QQb/JX9al2xZW2oWBUac1TwaHyDbUaDNAq+r6HNYreWNC7LdfEUs9SlQuTkFFMOKduXTq2YIa1al3tovrLkj+KdFb8YTxOVR9dLjqEvwZaDb5a/bbBHxgpcmegECwx2JB9ETqYtzF8i/nD/ucqzZ87AklFBZKRYtd1oZBWWGN6ltFr/GnJLBZDQx3w+vbaolhBeQa3dbld88cT8ofFMNy3goqqGGxG9dOqdnMJ+YvKZsT/YfUX4A9Lv9TDOmrb4M+dePqjQAL5bFQJMoEV9ueKlh3aiVoUxX/oEdP8WW2hV2PHIxLgLHSc49gqDlCqtMOBjS66BwZfk9DtzgFdxHQ6LVCH+UI0Y/6chP3TzyroViruJvmj0nmCP7qSgnz7UPnTbxIvHtyUPxzDUWDLqfauZKE77c596GefqnZKLqsZmH+gk9zgrzXVBkjFyUPQZqSLWIpux/HclKJvDhF03dNlVjkI1sZCMd+meg8SgduLOWn+cGMHRcKAIX/MX0eQB1zjLxNAHEPvAPyVRrsOAif9R7SqPhry2eQPNwH3qMihlVBKypyoMszmiYrTvYeDIqC/qfpVvSDJKHmRQ4QGme55ELe46yEYp1EVNrBmaEd9X5ZSKWNwryh9Fc4k2t7OsdP8ZULfc6KUKeLPeqG6hi1TDjAsoe7xg/S3N/aSJga+eXFpLsEfBCCSacvCKYwgt+tIT/aTjwThPNm/Tuq9wwIVjjhbyiWks9qtsqVMBE2fAmLgj+o4uPdf+qn1eA941gZWFH1wAdz20quUs7hjOT6dDCOpGnnkVuSy++Iru4zqH3sMAJ+9fj6npcP//T//so7//T+LTpxfXSbGf91su6SUpLEwW9fShCq11z83gM6A1448wgpWH4+LRPEpky0xTPGSe5oGYwZm0oNsZOQJ3K2osFGxcHEg0LGZTx64ga0yvlGsrcw8TNjYcvwXglyJw8sbo7wY/aJf3EwNPsLZ4vX14uLi7CLewjyxpTkcha/XfGpTBWvU6JaUh0E281RpOmtuVBSsFwhv55ONpwn6c8fvrq3HrswKUpY6SUtpted+oVFFUexC9pzbsrlPMMEzU61uvZcC/L5t/sFkqjyWqIJXXrqlbnuzAAKRQa4k/W1nPsDTzXfgc/ouK2wO+ojBaMuO1vg81clo6yZXlXqYviHbbKZLipUwutkaTd7YvNaqN8OlHFVHb2xMG4ST5tpzWNufF83Acojw1wGOqv3Otok2MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAw+PPi/wF2jskT69qo0gAAAABJRU5ErkJggg==" alt="hafman">
                 </div>
                 <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2022/03/WINTECH-logo-pardic.png" alt="WinTech">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdJRIQKggtUFz-6QGpygweZCT10w34vBKgvabZBb0GHV7DdXKDZ0XcV_glMwLrHIAQ_Q&usqp=CAU" alt="WinTech">
                 </div>
                 <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/akpa-logo.png" alt="Akpa">
+                    <img src="data:image/jpeg;base64,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OrcscQAfaSP2wPG17kL+8BraqylgtiNjK5AYHKkgggwJO6VdwdUGzSFL5wQSB7jAo7Hux1CkWVGm6vibK28gwyrA+YP9jArNuIZLGpRr2qc1sowp5jHLq+B0zAsK97a3vURfg9umKNaLMWDuz1bBrbxwDAyNu5VLSuoLYqYIwOD4WEBOnj9IQI3XcBp0DFGcu6Voq4y7scAdekCdr14vTmFZCrMjq2Mo6HDA4OIFW3Vor11MfXu58Bg9eAy3Xy6GBapuRF509qcC3Whs5W5QByGfJh16eyBf94M8eQ5YzjIzjwziBijc3w4JyPD4Mzccnjy7wDPHwz74FPfd2VabwnrNWy02dWQVmzHrFlGQAGByIFptXaJfgytwNjpaNKoRufeuB0Id8dCOuTAze165b6xYqlerKyt85GUlWU494MDz8a09x8K5fI8efLB+b4eHjAwJovqRtMdPeyi2yyuzT2KhZXZmAY5BX5x6e4QLjb+zZauv4XdfZaPWINzlUfrxI/OXI6+0QLvSdnaK3Vw1rFGazDuWVrWyDYR+NgmBG5V216hNTXSb17t6XVSoZQWDBhy+d4EY98DFaLbSvfMNHYmmaoVdwbAzXMzdWAL4TAz5+cC+7LbbZU19rq6C7uxWlj946pWCBybyyWPTyxAt7ab6u/p7i50tue5LKLFRvXPIqckFcHMCws2+2utF1R1FrajkvA6ohWZj6lBz4krnJ8OkDZ91qU0MjUNcpAU1oQDj3EkYx9flA1vRbHcC9jrqh37HCLqPXRET1e8bPrE4wPZmBstGhrbTLQ1XCtqwhrJyVBHVSwPiPbAtk0g0as9Vd2pstKqxLhn4qDx6uR0H+UDG17G/d23WC7vbnstNNVxQeseikg4JwPGBff8ATGnxhO9oVlAdK7GVX9vMA+sfLMDG6na66ra9OFusrYoakbUfJtwOXHdt5IMH3wM12grD1hTRZflgQKyFZGXqrhiRjr/OBT7MaCyiki3POyx7SC3MryPQF/pHHiYFBEu1N9dj0Pp66EtALMvN2sAXoFJxgA9YF1RsNauljW3Wmo8kFlrOqtgjOD54JgUdyrtq1C6muk3qajS6qVDL63JWAbo3mIFjfortRY+pem6juqu7qRLQlth5cmOVOAPLBMCtoez6k2HlqqWLese/ObjgHkeJ/V+qB73Daq6qRWlF2o5Wd6StmLBb+UNjMOvQDMClti6jSULWNM99tjWWHDqQjM2Qr2MeviMn64GObZxp1p09gtt7xFwg1HCq20Nl6xWfAAZb349sDd4CAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgf/2Q==" alt="wizer win">
                 </div>
                 <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/fard-logo.png" alt="فرد آلومینیوم">
+                    <img src="https://i.postimg.cc/1zXX2J1C/Gemini-Generated-Image-5zp4tp5zp4tp5zp4.png" alt="elista ">
                 </div>
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/vorneg-logo.png" alt="Vorne">
-                </div>
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/siegenia-logo.png" alt="Siegenia">
-                </div>
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/gealan-logo.png" alt="Gealan">
-                </div>
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/salamander-logo.png" alt="Salamander">
-                </div>
+               
+                
 
-                <!-- تکرار برای اسکرول بی‌نهایت (لوپ) -->
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/veka-logo.png" alt="Veka">
-                </div>
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2022/03/WINTECH-logo-pardic.png" alt="WinTech">
-                </div>
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/akpa-logo.png" alt="Akpa">
-                </div>
-                <div class="brand-logo">
-                    <img src="https://asemanwindow.com/wp-content/uploads/2023/06/fard-logo.png" alt="فرد آلومینیوم">
-                </div>
+               
             </div>
         </div>
     </div>
 </section>
-    <!-- پروژه‌ها -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title">پروژه های  تکمیل شده</h2>
-            <div class="projects-grid">
-                <div class="project-item"><img src="https://asemanwindow.com/wp-content/uploads/2022/03/Page-4-Image-8.jpg" alt="پروژه"></div>
-                <div class="project-item"><img src="https://placehold.co/500x500/bbbbbb/333333?text=پروژه+2" alt="پروژه"></div>
-                <div class="project-item"><img src="https://placehold.co/500x500/aaaaaa/333333?text=پروژه+3" alt="پروژه"></div>
-                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
-                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
-                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
-                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
-                <div class="project-item"><img src="https://placehold.co/500x500/999999/333333?text=پروژه+4" alt="پروژه"></div>
-                <!-- می‌تونی بیشتر اضافه کنی -->
+   
+    <<!-- پروژه‌های تکمیل شده -->
+<section id="projects">
+    <div class="container">
+        <h2 class="section-title"> نمونه کار ها</h2>
+        
+        <div class="projects-track">
+            <div class="project-item">
+                <img src="https://asemanwindow.com/wp-content/uploads/2022/03/Page-4-Image-8.jpg" alt="پروژه 1">
+                <div class="project-overlay">
+                    <p>ویلای مسکونی - نیشابور</p>
+                </div>
             </div>
+            <div class="project-item">
+                <img src="https://i.imgur.com/0vJ5mOa.jpg" alt="کارخانه ثمین">
+                <div class="project-overlay">
+                    <p>کارخانه و دفتر مرکزی ثمین</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://placehold.co/600x600/333333/ffffff?text=پروژه+3" alt="پروژه 3">
+                <div class="project-overlay">
+                    <p>مجتمع تجاری - مشهد</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://placehold.co/600x600/444444/ffffff?text=پروژه+4" alt="پروژه 4">
+                <div class="project-overlay">
+                    <p>ساختمان اداری - سبزوار</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://placehold.co/600x600/555555/ffffff?text=پروژه+5" alt="پروژه 5">
+                <div class="project-overlay">
+                    <p>مجتمع مسکونی - نیشابور</p>
+                </div>
+            </div>
+            <div class="project-item">
+                <img src="https://placehold.co/600x600/666666/ffffff?text=پروژه+6" alt="پروژه 6">
+                <div class="project-overlay">
+                    <p>هتل - مشهد</p>
+                </div>
+            </div>
+            <!-- می‌تونی بیشتر اضافه کنی -->
         </div>
-    </section>
-
+    </div>
+</section>
     <!-- درباره ما -->
     <section id="about" style="background:#f9fafb;">
         <div class="container">
