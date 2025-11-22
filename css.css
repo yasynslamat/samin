@@ -320,6 +320,83 @@
     object-fit: contain;     /* مهم‌ترین خط - لوگو کشیده نمیشه */
 }
 
+
+
+/* ===================== گواهینامه‌ها و افتخارات ===================== */
+.certificates-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #111827, #1f2937);
+    color: white;
+    overflow: hidden;
+}
+.certificates-section .section-title {
+    color: white;
+    margin-bottom: 70px;
+}
+
+/* دسکتاپ: گرید ۵ تایی */
+.certificates-track {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    padding: 0 20px;
+}
+
+/* موبایل: اسکرول افقی */
+@media (max-width: 768px) {
+    .certificates-track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 25px;
+        padding: 0 20px 40px;
+        -webkit-overflow-scrolling:initial;
+        scrollbar-width: none;
+    }
+    .certificates-track::-webkit-scrollbar { display: none; }
+    .cert-item { 
+        min-width: 220px; 
+        flex: 0 0 auto; 
+        scroll-snap-align: center; 
+    }
+}
+
+.cert-item {
+    background: rgba(255,255,255,0.08);
+    padding: 30px 20px;
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.4s;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.cert-item:hover {
+    transform: translateY(-20px) scale(1.08);
+    background: rgba(255,255,255,0.15);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.cert-item img {
+    width: 120px;
+    height: 160px;
+    object-fit: contain;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 5px 15px rgba(0,0,0,0.5));
+    transition: all 0.4s;
+}
+
+.cert-item:hover img {
+    transform: scale(0.15);
+}
+
+.cert-item p {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
         /* آمارها */
         .stats-section {
             padding: 90px 10px;
